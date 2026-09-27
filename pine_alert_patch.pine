@@ -1,0 +1,11 @@
+
+// Replace ONLY the alert section in your existing Pine script with this.
+// Keep the strategy.entry() logic unchanged.
+
+webhookSecret = input.string("CHANGE_ME", "Webhook Secret", group="Alerts")
+
+if buySignal and withinWindow
+    alert('{"secret":"' + webhookSecret + '","action":"buy","symbol":"' + syminfo.ticker + '","price":' + str.tostring(close) + '}', alert.freq_once_per_bar_close)
+
+if sellSignal and withinWindow
+    alert('{"secret":"' + webhookSecret + '","action":"sell","symbol":"' + syminfo.ticker + '","price":' + str.tostring(close) + '}', alert.freq_once_per_bar_close)
